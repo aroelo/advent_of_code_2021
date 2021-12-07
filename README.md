@@ -1,4 +1,4 @@
-# advent_of_code_2021
+# Advent of Code 2021
 
 My first attempt at [Advent of Code](https://adventofcode.com/). 🤶🎄
 
