@@ -30,9 +30,14 @@ def fold_paper(input_path: str, first_puzzle: bool) -> int:
         else:
             axis, index = step.split("fold along ")[1].split("=")
             fold_indices.append((axis, int(index)))
-
+    # Get shape of array based on max dot values
+    no_rows = max(dot_indices[0]) + 1
+    no_cols = max(dot_indices[1]) + 1
+    # Make sure that array has uneven number of rows/cols so it can be folded in half
+    no_rows = no_rows + (no_rows % 2 == 0)
+    no_cols = no_cols + (no_cols % 2 == 0)
     # Create a numpy array with dots as 1's
-    paper = np.zeros((max(dot_indices[0]) + 1, max(dot_indices[1]) + 1), dtype=int)
+    paper = np.zeros((no_rows, no_cols), dtype=int)
     paper[dot_indices] += 1
 
     # Fold numpy array along x and y axis
