@@ -1,11 +1,12 @@
 # https://adventofcode.com/2021/day/13
 
 import numpy as np
+
 from utils.utils import get_input_path
 
 
 def fold_paper(input_path: str, first_puzzle: bool) -> int:
-    """ Fold a transparent origami paper based on the instructions in input file.
+    """Fold a transparent origami paper based on the instructions in input file.
 
     :param input_path: File path of input data
     :param first_puzzle: Whether the answer for the first or second puzzle is calculated
@@ -39,11 +40,11 @@ def fold_paper(input_path: str, first_puzzle: bool) -> int:
         axis, index = fold
         # Fold the array by flipping it around
         if axis == "x":
-            paper[:, :index] += np.fliplr(paper[:, index+1:])
+            paper[:, :index] += np.fliplr(paper[:, index + 1:])
         else:
-            paper[:index, :] += np.flipud(paper[index+1:, :])
+            paper[:index, :] += np.flipud(paper[index + 1:, :])
         # Delete the rows/columns that were folder over
-        paper = np.delete(paper, range(index, index+index+1), axis=0 if axis == "y" else 1)
+        paper = np.delete(paper, range(index, index + index + 1), axis=0 if axis == "y" else 1)
         # Return the number of dots after the first fold
         if first_puzzle:
             return np.count_nonzero(paper)
